@@ -22,4 +22,4 @@ courses: { compsci: {week: 1} }
 - Discuss GitHub Account, show ability to push/pull changes from VSCode.
 - Discuss development on Themes, show how you plan to organized lab notebook.
 <br>
-<img alt="week1" src="{{site.baseurl}}/images/screenshot1.png" title="week1" width="750" length="750">
+<img alt="week1" src="{{site.baseurl}}/images/screenshot1.png" title="week1" width="1000" length="1000">
