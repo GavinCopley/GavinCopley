@@ -2,7 +2,7 @@
 toc: true
 comments: true
 layout: post
-title: Review Ticket
+title: Review Ticket Week 1
 description: This will help us communicate results.
 type: tangibles
 courses: { compsci: {week: 1} }
