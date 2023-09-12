@@ -323,7 +323,7 @@ courses: { compsci: {week: 2} }
             // test key and switch direction
             switch(key) {
                 case 37:    // left arrow
-                case 65: // a
+                case 65:
                     if (snake_dir !== 1)    // not right
                         snake_next_dir = 3; // then switch left
                     break;
@@ -332,8 +332,8 @@ courses: { compsci: {week: 2} }
                     if (snake_dir !== 2)    // not down
                         snake_next_dir = 0; // then switch up
                     break;
-                case 39:
-                case 68:    // right arrow
+                case 39:    // right arrow
+                case 68:    
                     if (snake_dir !== 3)    // not left
                         snake_next_dir = 1; // then switch right
                     break;
