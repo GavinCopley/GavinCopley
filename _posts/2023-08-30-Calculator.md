@@ -48,9 +48,14 @@ courses: { compsci: {week: 4} }
       <div class="calculator-number">9</div>
       <div class="calculator-operation">*</div>
       <!--row 4-->
-      <div class="calculator-clear">A/C</div>
+      <div class="calculator-number">π</div>
       <div class="calculator-number">0</div>
+      <div class="calculator-operation">√</div>
+      <div class="calculator-operation">^</div>
+      <!--row 5-->
+      <div class="calculator-clear">A/C</div>
       <div class="calculator-number">.</div>
+      <div class="calculator-operation">+-</div>
       <div class="calculator-equals">=</div>
   </div>
 </div>
@@ -76,22 +81,27 @@ courses: { compsci: {week: 4} }
   });
 
   // Number action
-  function number (value) { // function to input numbers into the calculator
-      if (value != ".") {
-          if (nextReady == true) { // nextReady is used to tell the computer when the user is going to input a completely new number
-              output.innerHTML = value;
-              if (value != "0") { // if statement to ensure that there are no multiple leading zeroes
-                  nextReady = false;
-              }
-          } else {
-              output.innerHTML = output.innerHTML + value; // concatenation is used to add the numbers to the end of the input
-          }
-      } else { // special case for adding a decimal; can't have two decimals
-          if (output.innerHTML.indexOf(".") == -1) {
-              output.innerHTML = output.innerHTML + value;
-              nextReady = false;
-          }
+  function number(value) {
+    if (value != "." && value != "π") {
+      if (nextReady == true) {
+       output.innerHTML = value;
+        if (value != "0") {
+         nextReady = false;
+       }
+     } else {
+       output.innerHTML = output.innerHTML + value;
+     }
+   } else {
+      if (value == "π") {
+        output.innerHTML = Math.PI.toFixed(4); // Set π to 3.1415
+        nextReady = true;
+     } else {
+        if (output.innerHTML.indexOf(".") == -1) {
+          output.innerHTML = output.innerHTML + value;
+         nextReady = false;
+        }
       }
+    }
   }
 
   // Operation buttons listener
@@ -101,20 +111,25 @@ courses: { compsci: {week: 4} }
     });
   });
 
-  // Operator action
-  function operation (choice) { // function to input operations into the calculator
-      if (firstNumber == null) { // once the operation is chosen, the displayed number is stored into the variable firstNumber
-          firstNumber = parseInt(output.innerHTML);
-          nextReady = true;
-          operator = choice;
-          return; // exits function
-      }
-      // occurs if there is already a number stored in the calculator
-      firstNumber = calculate(firstNumber, parseFloat(output.innerHTML)); 
-      operator = choice;
-      output.innerHTML = firstNumber.toString();
-      nextReady = true;
+  function operation(choice) {
+  if (choice === "+-") {
+    // Toggle the sign without changing the operator or firstNumber
+    output.innerHTML = (-parseFloat(output.innerHTML)).toString();
+    return;
   }
+
+  if (firstNumber == null) {
+    firstNumber = parseFloat(output.innerHTML);
+    nextReady = true;
+    operator = choice;
+    return;
+  }
+
+  firstNumber = calculate(firstNumber, parseFloat(output.innerHTML));
+  operator = choice;
+  output.innerHTML = firstNumber.toString();
+  nextReady = true;
+}
 
   // Calculator
   function calculate (first, second) { // function to calculate the result of the equation
@@ -131,6 +146,12 @@ courses: { compsci: {week: 4} }
               break;
           case "/":
               result = first / second;
+              break;
+          case "^":
+              result = first ** second;
+              break;
+          case "√":
+              result = first ** (1/second);
               break;
           default: 
               break;
