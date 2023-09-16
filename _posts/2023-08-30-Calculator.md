@@ -55,7 +55,7 @@ courses: { compsci: {week: 4} }
       <!--row 5-->
       <div class="calculator-clear">A/C</div>
       <div class="calculator-number">.</div>
-      <div class="calculator-operation">+-</div>
+      <div class="calculator-operation">±</div>
       <div class="calculator-equals">=</div>
   </div>
 </div>
@@ -112,7 +112,7 @@ courses: { compsci: {week: 4} }
   });
 
   function operation(choice) {
-  if (choice === "+-") {
+  if (choice === "±") {
     // Toggle the sign without changing the operator or firstNumber
     output.innerHTML = (-parseFloat(output.innerHTML)).toString();
     return;
