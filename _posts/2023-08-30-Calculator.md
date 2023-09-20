@@ -59,7 +59,6 @@ courses: { compsci: {week: 4} }
       <div class="calculator-equals">=</div>
   </div>
 </div>
-
 <!-- JavaScript (JS) implementation of the calculator. -->
 <script>
   // initialize important variables to manage calculations
@@ -71,15 +70,13 @@ courses: { compsci: {week: 4} }
   const numbers = document.querySelectorAll(".calculator-number");
   const operations = document.querySelectorAll(".calculator-operation");
   const clear = document.querySelectorAll(".calculator-clear");
-  const equals = document.querySelectorAll(".calculator-equals");
-
+  const equals = document.querySelectorAll(".calculator-equals"); 
   // Number buttons listener
   numbers.forEach(button => {
     button.addEventListener("click", function() {
       number(button.textContent);
     });
   });
-
   // Number action
   function number(value) {
     if (value != "." && value != "π") {
@@ -103,34 +100,29 @@ courses: { compsci: {week: 4} }
       }
     }
   }
-
   // Operation buttons listener
   operations.forEach(button => {
     button.addEventListener("click", function() {
       operation(button.textContent);
     });
   });
-
   function operation(choice) {
   if (choice === "±") {
     // Toggle the sign without changing the operator or firstNumber
     output.innerHTML = (-parseFloat(output.innerHTML)).toString();
     return;
   }
-
   if (firstNumber == null) {
     firstNumber = parseFloat(output.innerHTML);
     nextReady = true;
     operator = choice;
     return;
   }
-
   firstNumber = calculate(firstNumber, parseFloat(output.innerHTML));
   operator = choice;
   output.innerHTML = firstNumber.toString();
   nextReady = true;
 }
-
   // Calculator
   function calculate (first, second) { // function to calculate the result of the equation
       let result = 0;
@@ -158,34 +150,54 @@ courses: { compsci: {week: 4} }
       }
       return result;
   }
-
   // Equals button listener
   equals.forEach(button => {
     button.addEventListener("click", function() {
       equal();
     });
   });
-
   // Equal action
   function equal () { // function used when the equals button is clicked; calculates equation and displays it
       firstNumber = calculate(firstNumber, parseFloat(output.innerHTML));
       output.innerHTML = firstNumber.toString();
       nextReady = true;
   }
-
   // Clear button listener
   clear.forEach(button => {
     button.addEventListener("click", function() {
       clearCalc();
     });
   });
-
   // A/C action
   function clearCalc () { // clears calculator
       firstNumber = null;
       output.innerHTML = "0";
       nextReady = true;
   }
+  // Listen for keyboard events
+  document.addEventListener("keydown", function(event) {
+  // Check which key was pressed
+  const key = event.key;
+  // Handle numbers (0-9) and decimal point
+  if (/^[0-9]$/.test(key) || key === ".") {
+    number(key);
+  }
+  // Handle Backspace key for delete
+  if (key === "Backspace") {
+    deleteLastCharacter();
+  }
+  });
+  // Function to delete the last character
+  function deleteLastCharacter() {
+  const currentOutput = output.innerHTML;
+  if (currentOutput.length > 1) {
+    output.innerHTML = currentOutput.slice(0, -1);
+  } else {
+    output.innerHTML = "0";
+    nextReady = true;
+  }
+}
+
 </script>
 
 <!-- 
