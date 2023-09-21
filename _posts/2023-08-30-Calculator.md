@@ -21,9 +21,27 @@ courses: { compsci: {week: 4} }
     padding: 0.25em;
     font-size: 20px;
     border: 5px solid black;
+    background-color: #FAF9F6;
+    color: black;
   
     display: flex;
     align-items: center;
+  }
+  .calculator-number {
+    color: black;
+    background-color: #FAF9F6;
+  }
+  .calculator-operation {
+  color: white;
+  background-color: #808080;
+  }
+  .calculator-equals {
+    color: black;
+    background-color: #AEC6CF
+  }
+  .calculator-clear {
+    color: white;
+    background-color: #FF6961
   }
 </style>
 
@@ -176,13 +194,12 @@ courses: { compsci: {week: 4} }
   }
   // Listen for keyboard events
   document.addEventListener("keydown", function(event) {
-  // Check which key was pressed
   const key = event.key;
-  // Handle numbers (0-9) and decimal point
+  // Handle numbers and decimal point
   if (/^[0-9]$/.test(key) || key === ".") {
     number(key);
   }
-  // Handle Backspace key for delete
+  // Backspace key for delete
   if (key === "Backspace") {
     deleteLastCharacter();
   }
@@ -200,9 +217,7 @@ courses: { compsci: {week: 4} }
 
 </script>
 
-<!-- 
-Vanta animations just for fun, load JS onto the page
--->
+<!--Vanta animations just for fun, load JS onto the page-->
 <script src="{{site.baseurl}}/assets/js/three.r119.min.js"></script>
 <script src="{{site.baseurl}}/assets/js/vanta.halo.min.js"></script>
 <script src="{{site.baseurl}}/assets/js/vanta.birds.min.js"></script>
