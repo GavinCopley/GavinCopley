@@ -57,9 +57,9 @@ function animate() {
 
     player.update()
 
-    if (keys.right.pressed && player.position.x < 400) {
+    if (keys.right.pressed && player.position.x < 1920) {
         player.velocity.x = 5
-    } else if (keys.left.pressed && player.position.x > 100) {
+    } else if (keys.left.pressed && player.position.x > 1) {
         player.velocity.x = -5
     } else {
     player.velocity.x = 0
